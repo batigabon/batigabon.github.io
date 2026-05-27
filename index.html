@@ -1,0 +1,2274 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="BATI-GABON – Production de matériaux de construction locaux et travaux BTP de qualité à Moanda, Gabon. Briques, parpaings, pavés, béton, voirie, bâtiments résidentiels et industriels." />
+  <meta name="keywords" content="BTP Gabon, matériaux construction Gabon, briques Moanda, parpaings Gabon, travaux construction Gabon, BATI-GABON" />
+  <meta name="author" content="BATI-GABON" />
+  <meta property="og:title" content="BATI-GABON – Construisons l'avenir du Gabon" />
+  <meta property="og:description" content="Matériaux de construction locaux et travaux BTP de qualité à Moanda, Gabon." />
+  <meta property="og:type" content="website" />
+  <title>BATI-GABON | Matériaux BTP • Moanda, Gabon</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       CSS CUSTOM PROPERTIES – PALETTE GABONAISE
+    ============================================================ */
+    :root {
+      --green:   #009E3F;
+      --green-d: #007A30;
+      --green-l: #00C24E;
+      --yellow:  #FFCD00;
+      --yellow-d:#D4A900;
+      --blue:    #002F6C;
+      --blue-l:  #0046A0;
+      --dark:    #111111;
+      --dark2:   #1A1A1A;
+      --dark3:   #242424;
+      --dark4:   #2E2E2E;
+      --mid:     #3A3A3A;
+      --light:   #F4F4F0;
+      --white:   #FFFFFF;
+      --text-muted: #A0A0A0;
+
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-condensed: 'Barlow Condensed', sans-serif;
+      --font-body: 'Barlow', sans-serif;
+
+      --radius: 4px;
+      --radius-lg: 12px;
+      --shadow: 0 8px 32px rgba(0,0,0,0.45);
+      --shadow-sm: 0 4px 16px rgba(0,0,0,0.3);
+      --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      --nav-h: 72px;
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--dark);
+      color: var(--light);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    img { max-width: 100%; display: block; }
+    a  { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ============================================================
+       LOADING SCREEN
+    ============================================================ */
+    #loader {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--dark);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 24px;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #loader.hidden { opacity: 0; visibility: hidden; }
+
+    .loader-logo {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      letter-spacing: 4px;
+      color: var(--white);
+    }
+    .loader-logo span { color: var(--yellow); }
+
+    .loader-bar-wrap {
+      width: 220px; height: 3px;
+      background: var(--dark4);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .loader-bar {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--green), var(--yellow));
+      border-radius: 99px;
+      animation: loadFill 1.8s cubic-bezier(0.4,0,0.2,1) forwards;
+    }
+    @keyframes loadFill { to { width: 100%; } }
+
+    .loader-flag {
+      display: flex; gap: 4px;
+    }
+    .loader-flag span {
+      width: 14px; height: 36px;
+      border-radius: 2px;
+      animation: flagPop 0.6s ease forwards;
+      opacity: 0;
+      transform: scaleY(0);
+    }
+    .loader-flag span:nth-child(1) { background: var(--green);  animation-delay: 0.4s; }
+    .loader-flag span:nth-child(2) { background: var(--yellow); animation-delay: 0.55s; }
+    .loader-flag span:nth-child(3) { background: var(--blue);   animation-delay: 0.7s; }
+    @keyframes flagPop { to { opacity: 1; transform: scaleY(1); } }
+
+    /* ============================================================
+       SCROLL REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-left  { opacity: 0; transform: translateX(-50px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal-right { opacity: 0; transform: translateX(50px);  transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: none; }
+
+    /* delay helpers */
+    .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; }
+    .d3 { transition-delay: 0.3s; } .d4 { transition-delay: 0.4s; }
+    .d5 { transition-delay: 0.5s; } .d6 { transition-delay: 0.6s; }
+
+    /* ============================================================
+       NAVBAR
+    ============================================================ */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 1000;
+      height: var(--nav-h);
+      display: flex; align-items: center;
+      padding: 0 5%;
+      transition: background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease;
+    }
+    #navbar.scrolled {
+      background: rgba(17,17,17,0.96);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 24px rgba(0,0,0,0.5);
+      border-bottom: 1px solid rgba(255,205,0,0.15);
+    }
+
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1280px; margin: 0 auto;
+    }
+
+    .nav-logo {
+      display: flex; flex-direction: column; line-height: 1;
+    }
+    .nav-logo-name {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      letter-spacing: 3px;
+      color: var(--white);
+    }
+    .nav-logo-name span { color: var(--yellow); }
+    .nav-logo-slogan {
+      font-family: var(--font-body);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--green-l);
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 32px;
+    }
+    .nav-links a {
+      font-family: var(--font-condensed);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      position: relative;
+      transition: color 0.3s;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; left: 0; bottom: -4px;
+      width: 0; height: 2px;
+      background: var(--yellow);
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      background: var(--green);
+      color: var(--white) !important;
+      padding: 10px 22px;
+      border-radius: var(--radius);
+      font-family: var(--font-condensed) !important;
+      font-size: 0.9rem !important;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: background 0.3s, transform 0.2s !important;
+    }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { background: var(--green-l) !important; transform: translateY(-2px); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column; gap: 5px;
+      padding: 6px; cursor: pointer;
+    }
+    .hamburger span {
+      display: block; width: 26px; height: 2px;
+      background: var(--white);
+      transition: var(--transition);
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile nav */
+    .nav-mobile {
+      display: none;
+      position: fixed; top: var(--nav-h); left: 0; right: 0;
+      background: rgba(17,17,17,0.98);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255,205,0,0.15);
+      padding: 24px 5%;
+      flex-direction: column; gap: 0;
+      z-index: 999;
+      transform: translateY(-10px);
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .nav-mobile.open { display: flex; transform: none; opacity: 1; }
+    .nav-mobile a {
+      font-family: var(--font-condensed);
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      transition: color 0.2s, padding-left 0.2s;
+    }
+    .nav-mobile a:hover { color: var(--yellow); padding-left: 8px; }
+    .nav-mobile .nav-cta {
+      margin-top: 16px;
+      padding: 14px 22px;
+      text-align: center;
+      border-bottom: none;
+    }
+
+    /* ============================================================
+       SECTION UTILITIES
+    ============================================================ */
+    section { padding: 100px 5%; }
+
+    .container { max-width: 1280px; margin: 0 auto; }
+
+    .section-label {
+      font-family: var(--font-condensed);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--yellow);
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 12px;
+    }
+    .section-label::before {
+      content: '';
+      display: block; width: 28px; height: 2px;
+      background: var(--yellow);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 1;
+      color: var(--white);
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+    .section-title span { color: var(--green); }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    /* Divider flag */
+    .flag-divider {
+      display: flex; gap: 0; height: 5px;
+      width: 60px; margin-bottom: 24px;
+      border-radius: 2px; overflow: hidden;
+    }
+    .flag-divider span { flex: 1; }
+    .flag-divider span:nth-child(1) { background: var(--green); }
+    .flag-divider span:nth-child(2) { background: var(--yellow); }
+    .flag-divider span:nth-child(3) { background: var(--blue); }
+
+    /* Button styles */
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font-condensed);
+      font-size: 1rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 16px 36px;
+      border-radius: var(--radius);
+      transition: var(--transition);
+      position: relative; overflow: hidden;
+    }
+    .btn::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(255,255,255,0.1);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .btn:hover::before { opacity: 1; }
+
+    .btn-primary {
+      background: var(--green);
+      color: var(--white);
+      box-shadow: 0 4px 20px rgba(0,158,63,0.4);
+    }
+    .btn-primary:hover { background: var(--green-l); transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,158,63,0.5); }
+
+    .btn-yellow {
+      background: var(--yellow);
+      color: var(--dark);
+      box-shadow: 0 4px 20px rgba(255,205,0,0.35);
+    }
+    .btn-yellow:hover { background: #FFD933; transform: translateY(-3px); box-shadow: 0 8px 28px rgba(255,205,0,0.45); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,0.4);
+    }
+    .btn-outline:hover { border-color: var(--yellow); color: var(--yellow); transform: translateY(-3px); }
+
+    /* ============================================================
+       HERO SECTION
+    ============================================================ */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; align-items: center;
+      overflow: hidden;
+      padding: 0 5%;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        linear-gradient(135deg, rgba(0,47,108,0.82) 0%, rgba(17,17,17,0.75) 50%, rgba(0,158,63,0.4) 100%),
+        url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1800&q=80') center/cover no-repeat;
+      transform: scale(1.05);
+      animation: heroPan 20s ease-in-out infinite alternate;
+    }
+    @keyframes heroPan {
+      from { transform: scale(1.05) translateX(0); }
+      to   { transform: scale(1.08) translateX(-2%); }
+    }
+
+    /* Geometric overlay */
+    .hero-geo {
+      position: absolute; inset: 0; z-index: 1;
+      overflow: hidden; pointer-events: none;
+    }
+    .hero-geo::before {
+      content: '';
+      position: absolute;
+      right: -10%; top: 0;
+      width: 55%; height: 100%;
+      background: linear-gradient(135deg, transparent 40%, rgba(0,47,108,0.3) 100%);
+      clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);
+    }
+    .hero-geo::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 200px;
+      background: linear-gradient(to top, var(--dark), transparent);
+    }
+
+    /* Flag stripe on left */
+    .hero-flag-bar {
+      position: absolute; left: 0; top: 0; bottom: 0; z-index: 2;
+      display: flex; flex-direction: column;
+      width: 6px;
+    }
+    .hero-flag-bar span { flex: 1; }
+    .hero-flag-bar span:nth-child(1) { background: var(--green); }
+    .hero-flag-bar span:nth-child(2) { background: var(--yellow); }
+    .hero-flag-bar span:nth-child(3) { background: var(--blue); }
+
+    .hero-content {
+      position: relative; z-index: 3;
+      max-width: 780px;
+      padding-top: var(--nav-h);
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,205,0,0.1);
+      border: 1px solid rgba(255,205,0,0.3);
+      padding: 6px 16px;
+      border-radius: 99px;
+      font-family: var(--font-condensed);
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 24px;
+      animation: fadeSlideUp 0.8s 0.3s ease both;
+    }
+    .hero-badge-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--yellow);
+      animation: pulse 2s ease infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.5)} }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7vw, 6.5rem);
+      line-height: 0.95;
+      letter-spacing: 2px;
+      color: var(--white);
+      margin-bottom: 24px;
+      animation: fadeSlideUp 0.8s 0.5s ease both;
+    }
+    .hero-title .accent-green { color: var(--green-l); }
+    .hero-title .accent-yellow { color: var(--yellow); }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 300;
+      color: rgba(255,255,255,0.75);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+      animation: fadeSlideUp 0.8s 0.7s ease both;
+    }
+    .hero-subtitle strong { color: var(--white); font-weight: 600; }
+
+    .hero-actions {
+      display: flex; flex-wrap: wrap; gap: 16px;
+      margin-bottom: 56px;
+      animation: fadeSlideUp 0.8s 0.9s ease both;
+    }
+
+    .hero-stats {
+      display: flex; flex-wrap: wrap; gap: 32px;
+      animation: fadeSlideUp 0.8s 1.1s ease both;
+    }
+    .hero-stat { display: flex; flex-direction: column; gap: 2px; }
+    .hero-stat-num {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      color: var(--yellow);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+    .hero-stat-sep { width: 1px; background: rgba(255,255,255,0.15); align-self: stretch; }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* Scroll indicator */
+    .scroll-hint {
+      position: absolute; bottom: 32px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      animation: fadeSlideUp 0.8s 1.4s ease both;
+    }
+    .scroll-hint-line {
+      width: 1px; height: 50px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+      animation: scrollLine 1.8s ease infinite;
+    }
+    @keyframes scrollLine { 0%,100%{transform:scaleY(1)} 50%{transform:scaleY(0.4)} }
+    .scroll-hint-text {
+      font-size: 0.6rem; letter-spacing: 3px;
+      text-transform: uppercase; color: rgba(255,255,255,0.4);
+    }
+
+    /* ============================================================
+       ABOUT SECTION
+    ============================================================ */
+    #about {
+      background: var(--dark2);
+      position: relative; overflow: hidden;
+    }
+    #about::before {
+      content: 'BATI';
+      position: absolute; right: -2%; top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--font-display);
+      font-size: clamp(8rem, 18vw, 18rem);
+      color: rgba(255,255,255,0.02);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-image-stack {
+      position: relative;
+    }
+    .about-img-main {
+      width: 100%; aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+    .about-img-badge {
+      position: absolute; bottom: -20px; right: -20px;
+      background: var(--yellow);
+      color: var(--dark);
+      padding: 20px 24px;
+      border-radius: var(--radius-lg);
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .about-img-badge strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      line-height: 1;
+      color: var(--dark);
+    }
+    .about-img-badge span {
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: rgba(0,0,0,0.6);
+    }
+    .about-img-accent {
+      position: absolute; top: -12px; left: -12px;
+      width: 80px; height: 80px;
+      border-top: 3px solid var(--green);
+      border-left: 3px solid var(--green);
+      border-radius: 2px;
+    }
+
+    .about-content { }
+    .about-text {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+
+    .about-values {
+      display: flex; flex-direction: column; gap: 16px;
+      margin-bottom: 36px;
+    }
+    .value-item {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius);
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .value-item:hover {
+      border-color: rgba(0,158,63,0.4);
+      background: rgba(0,158,63,0.06);
+    }
+    .value-icon {
+      width: 42px; height: 42px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,158,63,0.15);
+      border-radius: var(--radius);
+      font-size: 1.3rem;
+    }
+    .value-text strong {
+      display: block;
+      font-family: var(--font-condensed);
+      font-size: 1rem; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: var(--white); margin-bottom: 3px;
+    }
+    .value-text span {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ============================================================
+       SERVICES SECTION
+    ============================================================ */
+    #services {
+      background: var(--dark);
+      position: relative;
+    }
+
+    .services-header {
+      display: flex; justify-content: space-between;
+      align-items: flex-end; gap: 32px;
+      margin-bottom: 60px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--dark3);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      position: relative; overflow: hidden;
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--green), var(--yellow));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0,158,63,0.3);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    }
+
+    .service-icon-wrap {
+      width: 64px; height: 64px;
+      background: rgba(0,158,63,0.12);
+      border: 1px solid rgba(0,158,63,0.2);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem;
+      margin-bottom: 24px;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .service-card:hover .service-icon-wrap {
+      background: rgba(0,158,63,0.25);
+      border-color: var(--green);
+    }
+
+    .service-card-num {
+      position: absolute; top: 20px; right: 28px;
+      font-family: var(--font-display);
+      font-size: 4rem;
+      color: rgba(255,255,255,0.03);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .service-title {
+      font-family: var(--font-condensed);
+      font-size: 1.4rem; font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--white);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+    .service-desc {
+      font-size: 0.93rem; color: var(--text-muted);
+      line-height: 1.7; margin-bottom: 24px;
+    }
+    .service-tags {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .service-tag {
+      font-family: var(--font-condensed);
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: 5px 12px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 99px;
+      color: rgba(255,255,255,0.6);
+      transition: background 0.3s, color 0.3s, border-color 0.3s;
+    }
+    .service-tag:hover {
+      background: rgba(0,158,63,0.15);
+      border-color: rgba(0,158,63,0.4);
+      color: var(--green-l);
+    }
+
+    /* ============================================================
+       ATELIERS SECTION
+    ============================================================ */
+    #ateliers {
+      background: var(--dark2);
+    }
+
+    .ateliers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 60px;
+    }
+
+    .atelier-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      cursor: pointer;
+      group: true;
+    }
+    .atelier-card-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      transition: transform 0.6s ease;
+    }
+    .atelier-card:hover .atelier-card-bg { transform: scale(1.08); }
+
+    .atelier-card:nth-child(1) .atelier-card-bg {
+      background-image: linear-gradient(135deg, rgba(0,158,63,0.7) 0%, rgba(17,17,17,0.85) 100%),
+        url('https://images.pexels.com/photos/6790929/pexels-photo-6790929.jpeg');
+    }
+    .atelier-card:nth-child(2) .atelier-card-bg {
+      background-image: linear-gradient(135deg, rgba(0,47,108,0.7) 0%, rgba(17,17,17,0.85) 100%),
+        url('https://images.pexels.com/photos/36520424/pexels-photo-36520424.jpeg');
+    }
+    .atelier-card:nth-child(3) .atelier-card-bg {
+      background-image: linear-gradient(135deg, rgba(255,205,0,0.5) 0%, rgba(17,17,17,0.85) 100%),
+        url('https://images.pexels.com/photos/18730812/pexels-photo-18730812.jpeg');
+    }
+
+    .atelier-card-content {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 32px;
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 60%);
+    }
+    .atelier-icon {
+      font-size: 2.4rem; margin-bottom: 12px;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+    }
+    .atelier-title {
+      font-family: var(--font-display);
+      font-size: 1.7rem; letter-spacing: 1.5px;
+      color: var(--white); margin-bottom: 6px;
+    }
+    .atelier-size {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-condensed);
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 12px;
+    }
+    .atelier-desc {
+      font-size: 0.88rem; color: rgba(255,255,255,0.65);
+      line-height: 1.6;
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.4s ease;
+      opacity: 0;
+    }
+    .atelier-card:hover .atelier-desc { max-height: 80px; opacity: 1; }
+
+    .atelier-badge {
+      position: absolute; top: 20px; right: 20px;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 99px;
+      padding: 6px 14px;
+      font-family: var(--font-condensed);
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* ============================================================
+       AVANTAGES SECTION
+    ============================================================ */
+    #avantages {
+      background: var(--blue);
+      position: relative; overflow: hidden;
+    }
+    #avantages::before {
+      content: '';
+      position: absolute; top: -50%; right: -20%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,158,63,0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    #avantages::after {
+      content: '';
+      position: absolute; bottom: -30%; left: -10%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(255,205,0,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .avantages-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 60px;
+    }
+
+    .avantage-card {
+      padding: 36px 28px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-lg);
+      text-align: center;
+      transition: var(--transition);
+    }
+    .avantage-card:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,205,0,0.4);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    .avantage-icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .avantage-title {
+      font-family: var(--font-condensed);
+      font-size: 1.05rem; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 10px;
+    }
+    .avantage-text {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       COUNTER SECTION
+    ============================================================ */
+    #stats {
+      padding: 80px 5%;
+      background: var(--dark3);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .stats-row {
+      display: flex; justify-content: center;
+      flex-wrap: wrap; gap: 0;
+    }
+    .stat-item {
+      flex: 1; min-width: 180px;
+      text-align: center;
+      padding: 32px 20px;
+      position: relative;
+    }
+    .stat-item + .stat-item::before {
+      content: '';
+      position: absolute; left: 0; top: 20%; bottom: 20%;
+      width: 1px;
+      background: rgba(255,255,255,0.08);
+    }
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      color: var(--green-l);
+      line-height: 1;
+      display: flex; align-items: flex-start; justify-content: center;
+    }
+    .stat-number .unit {
+      font-size: 1.8rem;
+      color: var(--yellow);
+      margin-top: 6px;
+    }
+    .stat-label {
+      font-family: var(--font-condensed);
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* ============================================================
+       GALLERY SECTION
+    ============================================================ */
+    #realisations {
+      background: var(--dark);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto;
+      gap: 16px;
+      margin-top: 60px;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: var(--dark3);
+    }
+    .gallery-item:nth-child(1) { grid-column: span 2; aspect-ratio: 16/9; }
+    .gallery-item:nth-child(2) { aspect-ratio: 1; }
+    .gallery-item:nth-child(3) { aspect-ratio: 1; }
+    .gallery-item:nth-child(4) { aspect-ratio: 16/9; }
+    .gallery-item:nth-child(5) { grid-column: span 2; aspect-ratio: 16/9; }
+
+    .gallery-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .gallery-item:hover .gallery-img { transform: scale(1.06); }
+
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 50%);
+      opacity: 0; transition: opacity 0.4s ease;
+      display: flex; align-items: flex-end; padding: 20px;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-overlay-text {
+      font-family: var(--font-condensed);
+      font-size: 0.95rem; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--white);
+    }
+
+    /* placeholder bg for gallery */
+    .gallery-placeholder {
+      width: 100%; height: 100%;
+      background: var(--dark4);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 10px;
+    }
+    .gallery-placeholder-icon { font-size: 2.5rem; opacity: 0.3; }
+    .gallery-placeholder-text {
+      font-family: var(--font-condensed);
+      font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+    }
+
+    /* ============================================================
+       DEVIS SECTION
+    ============================================================ */
+    #devis {
+      background: var(--dark2);
+      position: relative; overflow: hidden;
+    }
+    #devis::before {
+      content: '';
+      position: absolute; right: 0; top: 0; bottom: 0;
+      width: 42%;
+      background: linear-gradient(135deg, var(--green-d), var(--blue));
+      clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    .devis-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .devis-info { }
+    .devis-info-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 1;
+      letter-spacing: 2px;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .devis-info-title span { color: var(--yellow); }
+    .devis-info-text {
+      font-size: 1rem; font-weight: 300;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.8;
+      margin-bottom: 36px;
+    }
+    .devis-contact-list {
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .devis-contact-item {
+      display: flex; align-items: center; gap: 14px;
+      font-size: 0.95rem; color: rgba(255,255,255,0.7);
+    }
+    .devis-contact-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      background: rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    /* Form */
+    .devis-form-wrap {
+      position: relative; z-index: 1;
+      background: var(--dark);
+      border-radius: var(--radius-lg);
+      padding: 48px 40px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .form-title {
+      font-family: var(--font-display);
+      font-size: 1.8rem; letter-spacing: 1.5px;
+      color: var(--white); margin-bottom: 6px;
+    }
+    .form-sub {
+      font-size: 0.88rem; color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+    .form-group.full { grid-column: span 2; }
+
+    label {
+      font-family: var(--font-condensed);
+      font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+    label .req { color: var(--yellow); margin-left: 2px; }
+
+    input, select, textarea {
+      background: rgba(255,255,255,0.05);
+      border: 1.5px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 13px 16px;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
+      width: 100%;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--green);
+      background: rgba(0,158,63,0.06);
+      box-shadow: 0 0 0 3px rgba(0,158,63,0.12);
+    }
+    input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.25); }
+    select option { background: var(--dark2); color: var(--white); }
+    textarea { resize: vertical; min-height: 110px; }
+
+    .form-submit {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      margin-top: 8px;
+    }
+    .form-note { font-size: 0.78rem; color: var(--text-muted); }
+    #formMsg {
+      margin-top: 12px;
+      padding: 12px 16px;
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      display: none;
+    }
+    #formMsg.success { background: rgba(0,158,63,0.15); color: var(--green-l); border: 1px solid rgba(0,158,63,0.3); }
+    #formMsg.error   { background: rgba(220,53,69,0.15); color: #FF6B7A; border: 1px solid rgba(220,53,69,0.3); }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .footer-top {
+      padding: 80px 5% 60px;
+    }
+    .footer-grid {
+      max-width: 1280px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 60px;
+    }
+
+    .footer-brand {}
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 2.5rem; letter-spacing: 3px;
+      color: var(--white); margin-bottom: 14px;
+    }
+    .footer-logo span { color: var(--yellow); }
+    .footer-tagline {
+      font-size: 0.9rem; font-weight: 300;
+      color: var(--text-muted); line-height: 1.7;
+      max-width: 280px; margin-bottom: 24px;
+    }
+    .footer-flag-strip {
+      display: flex; height: 3px; width: 80px;
+      border-radius: 2px; overflow: hidden;
+    }
+    .footer-flag-strip span { flex: 1; }
+    .footer-flag-strip span:nth-child(1) { background: var(--green); }
+    .footer-flag-strip span:nth-child(2) { background: var(--yellow); }
+    .footer-flag-strip span:nth-child(3) { background: var(--blue); }
+
+    .footer-col-title {
+      font-family: var(--font-condensed);
+      font-size: 0.85rem; font-weight: 700;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--white); margin-bottom: 20px;
+    }
+
+    .footer-links { display: flex; flex-direction: column; gap: 12px; }
+    .footer-links a {
+      font-size: 0.9rem; color: var(--text-muted);
+      transition: color 0.2s, padding-left 0.2s;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .footer-links a::before {
+      content: '›';
+      color: var(--green);
+      font-size: 1.1rem;
+      transition: transform 0.2s;
+    }
+    .footer-links a:hover { color: var(--white); padding-left: 6px; }
+    .footer-links a:hover::before { transform: translateX(3px); }
+
+    .footer-contact { display: flex; flex-direction: column; gap: 16px; }
+    .footer-contact-item {
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+    .footer-contact-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 2px; }
+    .footer-contact-text {
+      font-size: 0.88rem; color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .footer-contact-text strong { color: rgba(255,255,255,0.7); font-weight: 500; }
+
+    .footer-bottom {
+      padding: 20px 5%;
+      background: rgba(0,0,0,0.3);
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer-bottom-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-copyright {
+      font-size: 0.82rem; color: rgba(255,255,255,0.3);
+    }
+    .footer-copyright span { color: var(--green); }
+    .footer-legal {
+      display: flex; gap: 20px;
+    }
+    .footer-legal a {
+      font-size: 0.8rem; color: rgba(255,255,255,0.25);
+      transition: color 0.2s;
+    }
+    .footer-legal a:hover { color: rgba(255,255,255,0.6); }
+
+    /* ============================================================
+       FLOATING WHATSAPP BUTTON
+    ============================================================ */
+    #whatsapp-btn {
+      position: fixed; bottom: 28px; right: 28px; z-index: 998;
+      width: 58px; height: 58px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+      transition: transform 0.3s, box-shadow 0.3s;
+      animation: bounceIn 0.8s 2s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+    #whatsapp-btn:hover {
+      transform: scale(1.12) rotate(-3deg);
+      box-shadow: 0 10px 32px rgba(37,211,102,0.55);
+    }
+    #whatsapp-btn svg { width: 28px; height: 28px; fill: #fff; }
+
+    .whatsapp-tooltip {
+      position: absolute; right: 70px;
+      background: var(--dark3);
+      color: var(--white);
+      font-family: var(--font-condensed);
+      font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 8px 14px;
+      border-radius: 6px;
+      white-space: nowrap;
+      opacity: 0; pointer-events: none;
+      transform: translateX(8px);
+      transition: opacity 0.3s, transform 0.3s;
+      box-shadow: var(--shadow-sm);
+    }
+    .whatsapp-tooltip::after {
+      content: '';
+      position: absolute; right: -6px; top: 50%;
+      transform: translateY(-50%);
+      border: 6px solid transparent;
+      border-right: none;
+      border-left-color: var(--dark3);
+    }
+    #whatsapp-btn:hover .whatsapp-tooltip {
+      opacity: 1; transform: none;
+    }
+
+    @keyframes bounceIn {
+      from { opacity: 0; transform: scale(0) translateY(30px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* ============================================================
+       BACK TO TOP
+    ============================================================ */
+    #back-top {
+      position: fixed; bottom: 28px; right: 96px; z-index: 997;
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--white); font-size: 1.1rem;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s, background 0.3s;
+      transform: translateY(10px);
+    }
+    #back-top.show { opacity: 1; pointer-events: auto; transform: none; }
+    #back-top:hover { background: var(--green); border-color: var(--green); transform: translateY(-3px); }
+
+    /* ============================================================
+       PROGRESS BAR
+    ============================================================ */
+    #progress-bar {
+      position: fixed; top: 0; left: 0; z-index: 1001;
+      height: 3px; width: 0;
+      background: linear-gradient(90deg, var(--green), var(--yellow));
+      transition: width 0.1s linear;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+      .about-image-stack { max-width: 480px; }
+      .avantages-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .devis-grid { grid-template-columns: 1fr; gap: 48px; }
+      #devis::before { display: none; }
+    }
+
+    @media (max-width: 768px) {
+      :root { --nav-h: 64px; }
+      section { padding: 72px 5%; }
+
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      .services-grid { grid-template-columns: 1fr; }
+      .services-header { flex-direction: column; align-items: flex-start; }
+      .ateliers-grid { grid-template-columns: 1fr; gap: 16px; }
+      .atelier-card { aspect-ratio: 3/2; }
+
+      .avantages-grid { grid-template-columns: 1fr; }
+      .stats-row { flex-wrap: wrap; }
+      .stat-item { min-width: 140px; flex: 1; }
+      .stat-item + .stat-item::before { display: none; }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .gallery-item:nth-child(1) { grid-column: span 2; }
+      .gallery-item:nth-child(5) { grid-column: span 2; }
+
+      .form-row { grid-template-columns: 1fr; }
+      .form-group.full { grid-column: span 1; }
+
+      .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+      .btn { width: 100%; justify-content: center; }
+
+      .footer-bottom-inner { flex-direction: column; align-items: flex-start; }
+
+      .devis-form-wrap { padding: 32px 24px; }
+      .form-submit { flex-direction: column; align-items: stretch; }
+      .form-submit .btn { width: 100%; justify-content: center; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title { font-size: 2.6rem; }
+      .hero-stats { gap: 20px; }
+      .hero-stat-sep { display: none; }
+
+      .about-img-badge { right: 0; bottom: -30px; }
+
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-item:nth-child(1),
+      .gallery-item:nth-child(5) { grid-column: span 1; }
+      .gallery-item { aspect-ratio: 16/9 !important; }
+    }
+
+    /* ============================================================
+       ACTIVE NAV SECTION HIGHLIGHT
+    ============================================================ */
+    .nav-links a.active { color: var(--yellow); }
+    .nav-links a.active::after { width: 100%; }
+
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════ PROGRESS BAR ══════════════════ -->
+  <div id="progress-bar" role="progressbar" aria-hidden="true"></div>
+
+  <!-- ══════════════════ LOADING SCREEN ══════════════════ -->
+  <div id="loader" aria-label="Chargement BATI-GABON">
+    <div class="loader-flag">
+      <span></span><span></span><span></span>
+    </div>
+    <div class="loader-logo">BATI<span>-</span>GABON</div>
+    <div class="loader-bar-wrap">
+      <div class="loader-bar"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════ NAVBAR ══════════════════ -->
+  <nav id="navbar" role="navigation" aria-label="Navigation principale">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo" aria-label="BATI-GABON Accueil">
+        <span class="nav-logo-name">BATI<span>-</span>GABON</span>
+        <span class="nav-logo-slogan">Qualité locale • Prix compétitifs • Réactivité</span>
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="#hero">Accueil</a></li>
+        <li><a href="#about">À propos</a></li>
+        <li><a href="#services">Activités</a></li>
+        <li><a href="#ateliers">Ateliers</a></li>
+        <li><a href="#realisations">Réalisations</a></li>
+        <li><a href="#devis" class="nav-cta">Devis</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <nav class="nav-mobile" id="nav-mobile" aria-label="Navigation mobile">
+    <a href="#hero" onclick="closeMobileNav()">Accueil</a>
+    <a href="#about" onclick="closeMobileNav()">À propos</a>
+    <a href="#services" onclick="closeMobileNav()">Nos activités</a>
+    <a href="#ateliers" onclick="closeMobileNav()">Nos ateliers</a>
+    <a href="#realisations" onclick="closeMobileNav()">Réalisations</a>
+    <a href="#devis" onclick="closeMobileNav()">Demander un devis</a>
+    <a href="#contact" onclick="closeMobileNav()" class="nav-cta">Contact</a>
+  </nav>
+
+  <!-- ══════════════════ HERO ══════════════════ -->
+  <section id="hero" aria-label="Accueil BATI-GABON">
+    <div class="hero-bg" role="img" aria-label="Chantier de construction au Gabon"></div>
+    <div class="hero-geo" aria-hidden="true"></div>
+    <div class="hero-flag-bar" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        Entreprise gabonaise du BTP — Moanda
+      </div>
+
+      <h1 class="hero-title">
+        CONSTRUISONS<br>
+        L'AVENIR DU<br>
+        <span class="accent-green">GABON</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        <strong>BATI-GABON</strong> — Fabricant local de matériaux de construction 
+        et entreprise BTP de référence. <strong>Briques, parpaings, béton, voiries, bâtiments.</strong>
+        Qualité maîtrisée, prix compétitifs.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#devis" class="btn btn-primary">
+          📋 Demander un devis
+        </a>
+        <a href="#services" class="btn btn-outline">
+          🔍 Nos activités
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-num" data-target="100" data-suffix="+">0+</span>
+          <span class="hero-stat-label">Projets réalisés</span>
+        </div>
+        <div class="hero-stat-sep" aria-hidden="true"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-num" data-target="3">0</span>
+          <span class="hero-stat-label">Ateliers actifs</span>
+        </div>
+        <div class="hero-stat-sep" aria-hidden="true"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-num" data-target="100" data-suffix="% 🇬🇦">0%</span>
+          <span class="hero-stat-label">Production locale</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-hint" aria-hidden="true">
+      <div class="scroll-hint-line"></div>
+      <span class="scroll-hint-text">Défiler</span>
+    </div>
+  </section>
+
+  <!-- ══════════════════ ABOUT ══════════════════ -->
+  <section id="about" aria-labelledby="about-title">
+    <div class="container">
+      <div class="about-grid">
+
+        <!-- Left: image -->
+        <div class="about-image-stack reveal-left">
+          <img
+            class="about-img-main"
+            src="https://i.postimg.cc/8zyqk9YC/Image21.png"
+            alt="Chantier de construction BATI-GABON à Moanda, Gabon"
+            loading="lazy"
+          />
+          <div class="about-img-accent" aria-hidden="true"></div>
+          <div class="about-img-badge">
+            <strong>2021</strong>
+            <span>Fondée à Moanda</span>
+          </div>
+        </div>
+
+        <!-- Right: content -->
+        <div class="about-content">
+          <div class="section-label reveal">À propos de nous</div>
+          <h2 class="section-title reveal d1" id="about-title">
+            UNE ENTREPRISE<br><span>GABONAISE</span><br>DE CŒUR
+          </h2>
+          <div class="flag-divider reveal d2" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+          <p class="about-text reveal d2">
+            <strong>BATI-GABON</strong> est une entreprise individuelle gabonaise spécialisée dans la 
+            <strong>production industrielle de matériaux de construction</strong> et 
+            l'exécution de <strong>travaux BTP</strong> de toute envergure.
+          </p>
+          <p class="about-text reveal d3">
+            Implantée à <strong>Moanda, province du Haut-Ogooué</strong>, notre ambition est claire : 
+            réduire la dépendance aux importations, valoriser le savoir-faire local et proposer des 
+            solutions compétitives adaptées au marché gabonais et centrafricain.
+          </p>
+
+          <div class="about-values reveal d4">
+            <div class="value-item">
+              <div class="value-icon" aria-hidden="true">🏆</div>
+              <div class="value-text">
+                <strong>Qualité locale certifiée</strong>
+                <span>Matériaux produits selon les normes BTP avec contrôle qualité rigoureux.</span>
+              </div>
+            </div>
+            <div class="value-item">
+              <div class="value-icon" aria-hidden="true">⚡</div>
+              <div class="value-text">
+                <strong>Réactivité maximale</strong>
+                <span>Délais respectés, équipes mobilisables rapidement sur tout le territoire.</span>
+              </div>
+            </div>
+            <div class="value-item">
+              <div class="value-icon" aria-hidden="true">💰</div>
+              <div class="value-text">
+                <strong>Prix compétitifs</strong>
+                <span>Production locale = coûts maîtrisés = économies réelles pour vos projets.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="reveal d5">
+            <a href="#devis" class="btn btn-primary">
+              Demander un devis gratuit
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ STATS / COUNTERS ══════════════════ -->
+  <section id="stats" aria-label="Nos chiffres clés">
+    <div class="container">
+      <div class="stats-row">
+        <div class="stat-item reveal d1">
+          <div class="stat-number">
+            <span class="counter" data-target="5">0</span>
+            <span class="unit">+</span>
+          </div>
+          <div class="stat-label">Années d'expérience</div>
+        </div>
+        <div class="stat-item reveal d2">
+          <div class="stat-number">
+            <span class="counter" data-target="100">0</span>
+            <span class="unit">+</span>
+          </div>
+          <div class="stat-label">Projets réalisés</div>
+        </div>
+        <div class="stat-item reveal d3">
+          <div class="stat-number">
+            <span class="counter" data-target="3">0</span>
+            <span class="unit"></span>
+          </div>
+          <div class="stat-label">Ateliers spécialisés</div>
+        </div>
+        <div class="stat-item reveal d4">
+          <div class="stat-number">
+            <span class="counter" data-target="8">0</span>
+            <span class="unit">+</span>
+          </div>
+          <div class="stat-label">Types de matériaux</div>
+        </div>
+        <div class="stat-item reveal d5">
+          <div class="stat-number">
+            <span class="counter" data-target="100">0</span>
+            <span class="unit">%</span>
+          </div>
+          <div class="stat-label">Made in Gabon 🇬🇦</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ SERVICES ══════════════════ -->
+  <section id="services" aria-labelledby="services-title">
+    <div class="container">
+      <div class="services-header">
+        <div>
+          <div class="section-label reveal">Ce que nous faisons</div>
+          <h2 class="section-title reveal d1" id="services-title">
+            NOS DOMAINES<br>D'<span>ACTIVITÉ</span>
+          </h2>
+          <div class="flag-divider reveal d2" aria-hidden="true"><span></span><span></span><span></span></div>
+        </div>
+        <p class="section-subtitle reveal d2">
+          De la production de matériaux à la réalisation clé en main, 
+          BATI-GABON couvre l'ensemble des besoins de la construction.
+        </p>
+      </div>
+
+      <div class="services-grid">
+
+        <!-- Service 1 -->
+        <div class="service-card reveal d1">
+          <span class="service-card-num" aria-hidden="true">01</span>
+          <div class="service-icon-wrap" aria-hidden="true">🧱</div>
+          <h3 class="service-title">Production industrielle de matériaux</h3>
+          <p class="service-desc">
+            Fabrication locale en grande série de matériaux de construction de haute qualité, 
+            réduisant votre dépendance aux importations et garantissant des délais maîtrisés.
+          </p>
+          <div class="service-tags" role="list">
+            <span class="service-tag" role="listitem">Briques</span>
+            <span class="service-tag" role="listitem">Parpaings</span>
+            <span class="service-tag" role="listitem">Pavés</span>
+            <span class="service-tag" role="listitem">Hourdis</span>
+            <span class="service-tag" role="listitem">Béton</span>
+            <span class="service-tag" role="listitem">Mortiers</span>
+            <span class="service-tag" role="listitem">Préfabriqués</span>
+            <span class="service-tag" role="listitem">Éco-matériaux</span>
+          </div>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="service-card reveal d2">
+          <span class="service-card-num" aria-hidden="true">02</span>
+          <div class="service-icon-wrap" aria-hidden="true">🏗️</div>
+          <h3 class="service-title">Travaux BTP & Génie Civil</h3>
+          <p class="service-desc">
+            Conception et réalisation de tous types d'ouvrages : du logement individuel aux 
+            infrastructures industrielles, en passant par les routes et les bâtiments publics.
+          </p>
+          <div class="service-tags" role="list">
+            <span class="service-tag" role="listitem">Résidentiel</span>
+            <span class="service-tag" role="listitem">Immeubles</span>
+            <span class="service-tag" role="listitem">Routes</span>
+            <span class="service-tag" role="listitem">Voiries</span>
+            <span class="service-tag" role="listitem">Ouvrages publics</span>
+            <span class="service-tag" role="listitem">Industriel</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ ATELIERS ══════════════════ -->
+  <section id="ateliers" aria-labelledby="ateliers-title">
+    <div class="container">
+      <div class="section-label reveal">Nos infrastructures</div>
+      <h2 class="section-title reveal d1" id="ateliers-title">
+        NOS <span>ATELIERS</span><br>SPÉCIALISÉS
+      </h2>
+      <div class="flag-divider reveal d2" aria-hidden="true"><span></span><span></span><span></span></div>
+      <p class="section-subtitle reveal d3">
+        Trois espaces de production et de service professionnels, 
+        au cœur de nos opérations à Moanda.
+      </p>
+
+      <div class="ateliers-grid">
+
+        <!-- Menuiserie -->
+        <article class="atelier-card reveal d1">
+          <div class="atelier-card-bg" role="img" aria-label="Atelier de menuiserie"></div>
+          <div class="atelier-card-content">
+            <div class="atelier-icon" aria-hidden="true">🪚</div>
+            <h3 class="atelier-title">Atelier Menuiserie</h3>
+            <div class="atelier-size">🔧 Travail du bois & métal</div>
+            <p class="atelier-desc">
+              Fabrication sur mesure de portes, fenêtres, escaliers et structures en bois 
+              pour vos projets de construction et de rénovation.
+            </p>
+          </div>
+          <div class="atelier-badge">Menuiserie</div>
+        </article>
+
+        <!-- Soudure -->
+        <article class="atelier-card reveal d2">
+          <div class="atelier-card-bg" role="img" aria-label="Atelier de soudure 30m²"></div>
+          <div class="atelier-card-content">
+            <div class="atelier-icon" aria-hidden="true">🔥</div>
+            <h3 class="atelier-title">Atelier Soudure</h3>
+            <p class="atelier-desc">
+              Soudure à l'arc et MIG/MAG pour ferronnerie, charpentes métalliques, 
+              grilles et structures industrielles.
+            </p>
+          </div>
+          <div class="atelier-badge">Soudure</div>
+        </article>
+
+        <!-- Bricolage -->
+        <article class="atelier-card reveal d3">
+          <div class="atelier-card-bg" role="img" aria-label="Magasin de bricolage 100m²"></div>
+          <div class="atelier-card-content">
+            <div class="atelier-icon" aria-hidden="true">🏪</div>
+            <h3 class="atelier-title">Magasin Bricolage</h3>
+            <p class="atelier-desc">
+              Vente de matériaux, outils et équipements de construction. 
+              Conseil personnalisé pour professionnels et particuliers.
+            </p>
+          </div>
+          <div class="atelier-badge">Magasin Bricolage</div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ AVANTAGES ══════════════════ -->
+  <section id="avantages" aria-labelledby="avantages-title">
+    <div class="container" style="position:relative;z-index:1">
+      <div class="section-label reveal">Pourquoi nous choisir</div>
+      <h2 class="section-title reveal d1" id="avantages-title">
+        NOS <span>AVANTAGES</span><br>CONCURRENTIELS
+      </h2>
+      <div class="flag-divider reveal d2" aria-hidden="true"><span></span><span></span><span></span></div>
+
+      <div class="avantages-grid">
+        <div class="avantage-card reveal d1">
+          <span class="avantage-icon" aria-hidden="true">📉</span>
+          <h3 class="avantage-title">Réduction des coûts</h3>
+          <p class="avantage-text">
+            Production locale = suppression des coûts de transport et taxes à l'import. 
+            Économisez jusqu'à 40% sur vos approvisionnements en matériaux.
+          </p>
+        </div>
+        <div class="avantage-card reveal d2">
+          <span class="avantage-icon" aria-hidden="true">✅</span>
+          <h3 class="avantage-title">Qualité maîtrisée</h3>
+          <p class="avantage-text">
+            Contrôle de chaque étape de production en interne. 
+            Matériaux testés et conformes aux normes BTP en vigueur.
+          </p>
+        </div>
+        <div class="avantage-card reveal d3">
+          <span class="avantage-icon" aria-hidden="true">🇬🇦</span>
+          <h3 class="avantage-title">Indépendance aux imports</h3>
+          <p class="avantage-text">
+            Contribuez à l'économie gabonaise. Nos matériaux 100% locaux 
+            réduisent la vulnérabilité aux fluctuations d'approvisionnement.
+          </p>
+        </div>
+        <div class="avantage-card reveal d4">
+          <span class="avantage-icon" aria-hidden="true">🏆</span>
+          <h3 class="avantage-title">Compétitivité marchés publics</h3>
+          <p class="avantage-text">
+            Notre modèle nous permet de proposer les offres les plus compétitives 
+            sur les appels d'offres publics et privés.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ GALERIE ══════════════════ -->
+  <section id="realisations" aria-labelledby="gallery-title">
+    <div class="container">
+      <div class="section-label reveal">Notre portfolio</div>
+      <h2 class="section-title reveal d1" id="gallery-title">
+        NOS <span>RÉALISATIONS</span>
+      </h2>
+      <div class="flag-divider reveal d2" aria-hidden="true"><span></span><span></span><span></span></div>
+      <p class="section-subtitle reveal d3">
+        Un aperçu de nos chantiers et productions au Gabon.
+      </p>
+
+      <div class="gallery-grid reveal d2">
+
+        <div class="gallery-item">
+          <img class="gallery-img"
+            src="https://images.pexels.com/photos/14596805/pexels-photo-14596805.jpeg"
+            alt="Construction bâtiment résidentiel BATI-GABON Moanda"
+            loading="lazy"
+          />
+          <div class="gallery-overlay"><span class="gallery-overlay-text">Bâtiment résidentiel</span></div>
+        </div>
+
+        <div class="gallery-item">
+          <img class="gallery-img"
+            src="https://i.postimg.cc/0jykjFv8/Chat-GPT-Image-27-mai-2026-14-53-21.png"
+            alt="Production innovante de matériaux BATI-GABON"
+            loading="lazy"
+          />
+          <div class="gallery-overlay"><span class="gallery-overlay-text">Innovant matériaux de construction</span></div>
+        </div>
+        
+        <div class="gallery-item">
+          <img class="gallery-img"
+            src="https://i.postimg.cc/prJWLv4z/Chat-GPT-Image-27-mai-2026-16-06-28.png"
+            alt="Fabrication de meubles sur mesure, portes et fenêtres Haut de gamme BATI-GABON Moanda"
+            loading="lazy"
+          />
+          <div class="gallery-overlay"><span class="gallery-overlay-text">Meubles, Portes et Fenêtres haut de gamme</span></div>
+        </div>
+
+        <div class="gallery-item">
+          <img class="gallery-img"
+            src="https://i.postimg.cc/YCy9JpQT/Chat-GPT-Image-27-mai-2026-15-41-57.png"
+            alt="Travaux de voirie et routes BATI-GABON"
+            loading="lazy"
+          />
+          <div class="gallery-overlay"><span class="gallery-overlay-text">Travaux voirie</span></div>
+        </div>
+
+        <div class="gallery-item">
+          <img class="gallery-img"
+            src="https://i.postimg.cc/XqbNWqHs/Chat-GPT-Image-27-mai-2026-16-07-30.png"
+            alt="Solutions métalliques sur mesure par BATI-GABON"
+            loading="lazy"
+          />
+          <div class="gallery-overlay"><span class="gallery-overlay-text">Solutions métalliques sur mesure</span></div>
+        </div>
+
+        <div class="gallery-item">
+          <img class="gallery-img"
+            src="https://i.postimg.cc/3W56yD5Q/Chat-GPT-Image-27-mai-2026-15-56-07.png"
+            alt="Magasin de bricolage de BATI-GABON"
+            loading="lazy"
+          />
+          <div class="gallery-overlay"><span class="gallery-overlay-text">Vente de matériel de bricolage</span></div>
+        </div>
+        
+        <div class="gallery-item">
+          <img class="gallery-img"
+            src="https://i.postimg.cc/vTs8yTq3/Chat-GPT-Image-27-mai-2026-16-06-57.png"
+            alt="Livraison réussie pour BATI-GABON"
+            loading="lazy"
+          />
+          <div class="gallery-overlay"><span class="gallery-overlay-text">plus de 4 000 briques à une entrepreneuse</span></div>
+        </div>
+        
+        <div class="gallery-item">
+          <img class="gallery-img"
+            src="https://i.postimg.cc/prHVvrGk/Chat-GPT-Image-27-mai-2026-16-08-02.png"
+            alt="Livraison réussie pour BATI-GABON"
+            loading="lazy"
+          />
+          <div class="gallery-overlay"><span class="gallery-overlay-text">plus de 8 000 briques à un cadre de la COMILOG</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ DEVIS ══════════════════ -->
+  <section id="devis" aria-labelledby="devis-title">
+    <div class="container">
+      <div class="devis-grid">
+
+        <!-- Left info -->
+        <div class="devis-info">
+          <div class="section-label reveal">Gratuit & sans engagement</div>
+          <h2 class="devis-info-title reveal d1" id="devis-title">
+            OBTENEZ VOTRE<br><span>DEVIS</span><br>GRATUIT
+          </h2>
+          <div class="flag-divider reveal d2" aria-hidden="true"><span></span><span></span><span></span></div>
+          <p class="devis-info-text reveal d2">
+            Décrivez-nous votre projet et notre équipe vous contactera sous 
+            <strong>24h ouvrées</strong> avec une estimation détaillée et personnalisée.
+          </p>
+
+          <div class="devis-contact-list reveal d3">
+            <div class="devis-contact-item">
+              <div class="devis-contact-icon" aria-hidden="true">📍</div>
+              <span>Zone Bellevue II, Moanda, Gabon</span>
+            </div>
+            <div class="devis-contact-item">
+              <div class="devis-contact-icon" aria-hidden="true">📞</div>
+              <span>+241 06 93 19 34</span>
+            </div>
+            <div class="devis-contact-item">
+              <div class="devis-contact-icon" aria-hidden="true">✉️</div>
+              <span>batigabon@gmail.com</span>
+            </div>
+            <div class="devis-contact-item">
+              <div class="devis-contact-icon" aria-hidden="true">🕐</div>
+              <span>Lun – Sam : 08h00 – 18h00</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right form -->
+        <div class="devis-form-wrap reveal d2">
+          <h3 class="form-title">Votre demande</h3>
+          <p class="form-sub">Tous les champs marqués <span style="color:var(--yellow)">*</span> sont obligatoires.</p>
+
+          <form id="devisForm" novalidate aria-label="Formulaire de demande de devis">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname">Prénom <span class="req">*</span></label>
+                <input type="text" id="fname" name="fname" placeholder="Jean-Pierre" required autocomplete="given-name" />
+              </div>
+              <div class="form-group">
+                <label for="lname">Nom <span class="req">*</span></label>
+                <input type="text" id="lname" name="lname" placeholder="MBOUMBA" required autocomplete="family-name" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">Téléphone <span class="req">*</span></label>
+                <input type="tel" id="phone" name="phone" placeholder="+241 XX XX XX XX" required autocomplete="tel" />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="jean@exemple.com" autocomplete="email" />
+              </div>
+            </div>
+
+            <div class="form-group full">
+              <label for="project-type">Type de projet <span class="req">*</span></label>
+              <select id="project-type" name="project-type" required>
+                <option value="" disabled selected>— Sélectionnez votre projet —</option>
+                <optgroup label="Matériaux de construction">
+                  <option value="briques">Briques & parpaings</option>
+                  <option value="paves">Pavés & dalles</option>
+                  <option value="beton">Béton & mortier</option>
+                  <option value="prefab">Éléments préfabriqués</option>
+                  <option value="eco">Matériaux écologiques</option>
+                </optgroup>
+                <optgroup label="Travaux BTP">
+                  <option value="residentiel">Bâtiment résidentiel</option>
+                  <option value="immeuble">Immeuble / Ensemble immobilier</option>
+                  <option value="route">Route & voirie</option>
+                  <option value="public">Ouvrage public</option>
+                  <option value="industriel">Infrastructure industrielle</option>
+                </optgroup>
+                <optgroup label="Ateliers">
+                  <option value="menuiserie">Menuiserie sur mesure</option>
+                  <option value="soudure">Travaux de soudure</option>
+                  <option value="magasin">Achat en magasin</option>
+                </optgroup>
+                <option value="autre">Autre / Mixte</option>
+              </select>
+            </div>
+
+            <div class="form-group full">
+              <label for="description">Description du projet <span class="req">*</span></label>
+              <textarea
+                id="description" name="description"
+                placeholder="Décrivez votre projet : surface, localisation, délais souhaités, matériaux nécessaires..."
+                required rows="5"
+              ></textarea>
+            </div>
+
+            <div class="form-submit">
+              <p class="form-note">🔒 Vos données restent confidentielles.</p>
+              <button type="submit" class="btn btn-primary" id="submitBtn">
+                📬 Envoyer ma demande
+              </button>
+            </div>
+
+            <div id="formMsg" role="alert" aria-live="polite"></div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ FOOTER ══════════════════ -->
+  <footer id="contact" role="contentinfo">
+    <div class="footer-top">
+      <div class="footer-grid container">
+
+        <!-- Brand -->
+        <div class="footer-brand">
+          <div class="footer-logo">BATI<span>-GABON</span></div>
+          <p class="footer-tagline">
+            Votre partenaire de confiance pour la construction et la production de matériaux locaux 
+            au Gabon et en Afrique centrale.
+          </p>
+          <div class="footer-flag-strip" aria-label="Drapeau du Gabon">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h3 class="footer-col-title">Navigation</h3>
+          <ul class="footer-links">
+            <li><a href="#hero">Accueil</a></li>
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#services">Nos activités</a></li>
+            <li><a href="#ateliers">Nos ateliers</a></li>
+            <li><a href="#realisations">Réalisations</a></li>
+            <li><a href="#devis">Demande de devis</a></li>
+          </ul>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <h3 class="footer-col-title">Services</h3>
+          <ul class="footer-links">
+            <li><a href="#services">Briques & parpaings</a></li>
+            <li><a href="#services">Pavés & hourdis</a></li>
+            <li><a href="#services">Béton & mortier</a></li>
+            <li><a href="#services">Bâtiment résidentiel</a></li>
+            <li><a href="#services">Routes & voiries</a></li>
+            <li><a href="#ateliers">Menuiserie & soudure</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h3 class="footer-col-title">Nous contacter</h3>
+          <div class="footer-contact">
+            <div class="footer-contact-item">
+              <span class="footer-contact-icon" aria-hidden="true">📍</span>
+              <div class="footer-contact-text">
+                <strong>Zone Bellevue II</strong><br>
+                Moanda, Province du Haut-Ogooué<br>Gabon
+              </div>
+            </div>
+            <div class="footer-contact-item">
+              <span class="footer-contact-icon" aria-hidden="true">📞</span>
+              <div class="footer-contact-text">
+                <a href="tel:+24106931934" style="color:inherit">+241 06 93 19 34</a>
+              </div>
+            </div>
+            <div class="footer-contact-item">
+              <span class="footer-contact-icon" aria-hidden="true">✉️</span>
+              <div class="footer-contact-text">
+                <a href="mailto:batigabon@gmail.com" style="color:inherit">batigabon@gmail.com</a>
+              </div>
+            </div>
+            <div class="footer-contact-item">
+              <span class="footer-contact-icon" aria-hidden="true">💬</span>
+              <div class="footer-contact-text">
+                <a href="https://wa.me/24106931934" target="_blank" rel="noopener" style="color:var(--green)">
+                  WhatsApp disponible
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <p class="footer-copyright">
+          © 2026 <span>BATI-GABON</span> — Tous droits réservés. 
+          Entreprise gabonaise du BTP | Moanda, Gabon 🇬🇦
+        </p>
+        <div class="footer-legal">
+          <a href="#" aria-label="Mentions légales">Mentions légales</a>
+          <a href="#" aria-label="Politique de confidentialité">Confidentialité</a>
+          <a href="#devis" aria-label="Demander un devis">Devis</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════════ FLOATING WHATSAPP ══════════════════ -->
+  <a
+    id="whatsapp-btn"
+    href="https://wa.me/24106931934?text=Bonjour%20BATI-GABON%2C%20je%20souhaite%20un%20devis%20pour..."
+    target="_blank" rel="noopener"
+    aria-label="Contacter BATI-GABON sur WhatsApp"
+  >
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    <span class="whatsapp-tooltip">Discuter sur WhatsApp</span>
+  </a>
+
+  <!-- Back to top -->
+  <button id="back-top" aria-label="Retour en haut de page">▲</button>
+
+  <!-- ══════════════════ JAVASCRIPT ══════════════════ -->
+  <script>
+    /* ──────────── LOADER ──────────── */
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+        document.body.style.overflow = '';
+      }, 2000);
+    });
+    document.body.style.overflow = 'hidden';
+
+    /* ──────────── NAVBAR SCROLL ──────────── */
+    const navbar = document.getElementById('navbar');
+    const progressBar = document.getElementById('progress-bar');
+    const backTop = document.getElementById('back-top');
+
+    function updateScroll() {
+      const scrolled = window.scrollY;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = Math.round((scrolled / total) * 100);
+
+      // navbar style
+      navbar.classList.toggle('scrolled', scrolled > 60);
+
+      // progress bar
+      progressBar.style.width = pct + '%';
+
+      // back to top
+      backTop.classList.toggle('show', scrolled > 400);
+    }
+
+    window.addEventListener('scroll', updateScroll, { passive: true });
+
+    /* ──────────── BACK TO TOP ──────────── */
+    backTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    /* ──────────── HAMBURGER ──────────── */
+    const hamburger = document.getElementById('hamburger');
+    const navMobile = document.getElementById('nav-mobile');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = navMobile.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+
+    function closeMobileNav() {
+      navMobile.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+
+    // Close nav when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!navbar.contains(e.target) && !navMobile.contains(e.target)) {
+        closeMobileNav();
+      }
+    });
+
+    /* ──────────── ACTIVE NAV LINK ──────────── */
+    const sections = document.querySelectorAll('section[id], footer[id]');
+    const navAnchors = document.querySelectorAll('.nav-links a');
+
+    function updateActiveNav() {
+      const offset = window.innerHeight * 0.4;
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY + offset >= s.offsetTop) current = s.id;
+      });
+      navAnchors.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+      });
+    }
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
+
+    /* ──────────── SCROLL REVEAL ──────────── */
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          // start counter if it's a stat
+          e.target.querySelectorAll('.counter').forEach(startCounter);
+          revealObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    /* ──────────── STAT COUNTERS ──────────── */
+    function startCounter(el) {
+      if (el.dataset.counted) return;
+      el.dataset.counted = '1';
+      const target = parseInt(el.dataset.target, 10);
+      const duration = 1800;
+      const start = performance.now();
+
+      function step(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(eased * target);
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = target;
+      }
+      requestAnimationFrame(step);
+    }
+
+    // Also trigger counters for hero stats on page load
+    const heroCounters = document.querySelectorAll('.hero-stat-num[data-target]');
+    setTimeout(() => {
+      heroCounters.forEach(el => {
+        const target = parseInt(el.dataset.target, 10);
+        const suffix = el.dataset.suffix || '';
+        const duration = 2000;
+        const start = performance.now();
+        function step(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.floor(eased * target) + suffix;
+          if (progress < 1) requestAnimationFrame(step);
+          else el.textContent = target + suffix;
+        }
+        requestAnimationFrame(step);
+      });
+    }, 2200);
+
+    /* ──────────── DEVIS FORM ──────────── */
+    const form = document.getElementById('devisForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const formMsg = document.getElementById('formMsg');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Basic validation
+      const fname = form.fname.value.trim();
+      const lname = form.lname.value.trim();
+      const phone = form.phone.value.trim();
+      const projectType = form['project-type'].value;
+      const description = form.description.value.trim();
+
+      if (!fname || !lname || !phone || !projectType || !description) {
+        showMsg('⚠️ Veuillez remplir tous les champs obligatoires.', 'error');
+        return;
+      }
+
+      // Phone basic check
+      if (!/[\d\s\+]{7,}/.test(phone)) {
+        showMsg('⚠️ Numéro de téléphone invalide.', 'error');
+        return;
+      }
+
+      // Simulate submission
+      submitBtn.textContent = '⏳ Envoi en cours…';
+      submitBtn.disabled = true;
+
+      setTimeout(() => {
+        showMsg('✅ Merci ! Votre demande a bien été reçue. Notre équipe vous contactera sous 24h ouvrées.', 'success');
+        form.reset();
+        submitBtn.textContent = '📬 Envoyer ma demande';
+        submitBtn.disabled = false;
+      }, 1800);
+    });
+
+    function showMsg(msg, type) {
+      formMsg.textContent = msg;
+      formMsg.className = type;
+      formMsg.style.display = 'block';
+      formMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      setTimeout(() => {
+        if (type === 'success') {
+          formMsg.style.display = 'none';
+        }
+      }, 7000);
+    }
+
+    /* ──────────── PARALLAX HERO ──────────── */
+    const heroBg = document.querySelector('.hero-bg');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY < window.innerHeight) {
+        heroBg.style.transform = `scale(1.06) translateY(${window.scrollY * 0.3}px)`;
+      }
+    }, { passive: true });
+
+    /* ──────────── INPUT FOCUS ANIMATION ──────────── */
+    document.querySelectorAll('input, textarea, select').forEach(el => {
+      el.addEventListener('focus', () => {
+        el.parentElement.querySelector('label')?.style && (el.parentElement.querySelector('label').style.color = 'var(--green-l)');
+      });
+      el.addEventListener('blur', () => {
+        el.parentElement.querySelector('label')?.style && (el.parentElement.querySelector('label').style.color = '');
+      });
+    });
+
+    /* ──────────── SMOOTH CLOSE mobile nav on scroll ──────────── */
+    window.addEventListener('scroll', () => {
+      if (navMobile.classList.contains('open') && window.scrollY > 50) {
+        closeMobileNav();
+      }
+    }, { passive: true });
+
+  </script>
+</body>
+</html>
